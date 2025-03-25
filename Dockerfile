@@ -17,7 +17,7 @@ RUN git clone https://github.com/karthikeyan0312/discord_bot_E/ /tmp/app_clone &
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose the port
-EXPOSE 8080
+EXPOSE 8090
 
 # Command to run the application
 CMD ["python", "app.py"]
