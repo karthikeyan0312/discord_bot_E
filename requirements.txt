@@ -1,0 +1,5 @@
+discord
+GoogleNews
+asyncio
+wolframalpha
+requests
