@@ -8,7 +8,7 @@ services:
     image: discord-bot-einstein:latest
     container_name: discord-bot-einstein
     ports:
-      - "8080:8080"
+      - "8090:8090"
     dns:
       - 8.8.8.8
       - 8.8.4.4
