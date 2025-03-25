@@ -1,23 +1,30 @@
-version: '3.8'
+version: '3'
 
 services:
-  api:
-    build: .
+  discord-bot-einstein:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: discord-bot-einstein:latest
     container_name: discord-bot-einstein
     ports:
-      - "0.0.0.0:443:443"
-    restart: always
-    environment:
-      - PYTHONUNBUFFERED=1
-    networks:
-      - app-network
+      - "8080:8080"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - discord_bot_data:/app/data
+    restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 3G
-        reservations:
           memory: 1G
+        reservations:
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
 
-networks:
-  app-network:
-    driver: bridge
+volumes:
+  discord_bot_data:
+    driver: local
