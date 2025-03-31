@@ -1,23 +1,43 @@
-version: '3.8'
+docker-compose
+
+version: '3'
 
 services:
-  api:
+  discord-bot:
     build: .
     container_name: discord-bot-einstein
     ports:
-      - "0.0.0.0:443:443"
-    restart: always
+      - "8502:8502"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
-      - PYTHONUNBUFFERED=1
-    networks:
-      - app-network
-    deploy:
-      resources:
-        limits:
-          memory: 3G
-        reservations:
-          memory: 1G
+    restart: unless-stopped
 
-networks:
-  app-network:
-    driver: bridge
+
+Dockerfile
+
+FROM python:3.8-slim-buster
+
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy application files
+COPY . /app/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose port
+EXPOSE 8502
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+
+# Run the application
+CMD ["python", "test.py"]
