@@ -6,9 +6,9 @@ services:
     container_name: discord-bot-einstein
     ports:
       - "8502:8502"
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
     environment:
-      - DISCORD_TOKEN=${DISCORD_TOKEN}  # Explicitly pass the variable
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - api=${api}
+      - emoji_api=${emoji_api}
+      - google_news_api = ${google_news_api}
     restart: unless-stopped
