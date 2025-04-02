@@ -9,5 +9,4 @@ services:
     dns:
       - 8.8.8.8
       - 8.8.4.4
-    environment:
     restart: unless-stopped
