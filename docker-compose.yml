@@ -12,9 +12,6 @@ services:
     environment:
     restart: unless-stopped
 
-
-Dockerfile
-
 FROM python:3.8-slim-buster
 
 WORKDIR /app
