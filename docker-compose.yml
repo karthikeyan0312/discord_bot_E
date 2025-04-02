@@ -9,4 +9,6 @@ services:
     dns:
       - 8.8.8.8
       - 8.8.4.4
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}  # Explicitly pass the variable
     restart: unless-stopped
