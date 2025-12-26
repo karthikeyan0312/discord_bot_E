@@ -16,7 +16,10 @@ api=os.environ.get('api')
 gapi=os.environ.get('google_news_api')
 url=os.environ.get('emoji_api')
 espression_emoji=['face-with-raised-eyebrow','thinking-face','face-with-rolling-eyes','sleeping-face','exploding-head','face-with-monocle','flushed-face']
-client=commands.Bot(command_prefix='!')
+intents = discord.Intents.default()
+intents.message_content = True
+client=commands.Bot(command_prefix='!',intents=intents)
+#client=commands.Bot(command_prefix='!')
 gapi=os.environ.get('google_news_api')
 #client = discord.Client()
 

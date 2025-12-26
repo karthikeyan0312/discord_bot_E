@@ -6,9 +6,9 @@ services:
     container_name: discord-bot-einstein-debug
     ports:
       - "8502:8502"
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
     environment:
-      - DISCORD_TOKEN=ODI4Njg5MDIwMzAxMDgyNjM1.GvLyjo.c8-U4ygKg6e0I2rm4KeMi8dQv__RotQMWhhL8k
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - api=${api}
+      - emoji_api=${emoji_api}
+      - google_news_api = ${google_news_api}
     restart: unless-stopped
