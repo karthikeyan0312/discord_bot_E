@@ -1,12 +1,12 @@
-FROM python:3.8-slim-buster
+FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get install -y git && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy application files
 COPY . /app/
@@ -14,11 +14,8 @@ COPY . /app/
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port
-EXPOSE 8502
-
-# Set environment variables
+# Environment settings
 ENV PYTHONUNBUFFERED=1
 
-# Run the application
+# Run the bot
 CMD ["python", "test.py"]
